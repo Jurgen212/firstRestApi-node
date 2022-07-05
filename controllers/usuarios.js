@@ -12,7 +12,7 @@ const usuariosGet = (req = request, res = response ) => {
         q              ,
         nombre         ,
         apiKey
-    });s
+    });
 };
 
 
