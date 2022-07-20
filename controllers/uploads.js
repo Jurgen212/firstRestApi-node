@@ -170,15 +170,8 @@ const mostrarImagen = async ( req = request, res = response ) =>{
     
     if( modelo.img ){
 
-        const nombreArr = modelo.img.split('/');
-        const nombre    = nombreArr[ nombreArr.length - 1 ];
-
-        const [ public_id ]   = nombre.split('.');
-
-        const { secure_url } = await cloudinary.uploader.create_archive( public_id );
-
         
-        return res.status( 200 ).json( { url: secure_url } );
+        return res.status( 200 ).json( { url: modelo.img } );
 
     }
 
