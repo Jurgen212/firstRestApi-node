@@ -1,5 +1,5 @@
 
-const { request, response } = require("express");
+const { request, response, json } = require("express");
 
 
 const path      = require('path');
@@ -167,17 +167,19 @@ const mostrarImagen = async ( req = request, res = response ) =>{
             break;
     }
 
-    //Limpiar imagenes previas
     
     if( modelo.img ){
 
-        //Hay que borrar la img del servidor
-        const pathImagen = path.join( __dirname, '../uploads', coleccion, modelo.img );
+        const nombreArr = modelo.img.split('/');
+        const nombre    = nombreArr[ nombreArr.length - 1 ];
+
+        const [ public_id ]   = nombre.split('.');
+
+        const { secure_url } = await cloudinary.uploader.create_archive( public_id );
+
         
-        if( fs.existsSync( pathImagen ) ) {
-            
-            return res.status( 200 ).sendFile( pathImagen );
-        }
+        return res.status( 200 ).json( { url: secure_url } );
+
     }
 
     const pathNoImage = path.join( __dirname, '../assets', `no-image.jpg`);
