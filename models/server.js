@@ -2,7 +2,7 @@
 const express = require('express');
 const cors    = require('cors')   ; 
 const { dbConnection } = require('../database/config.js');
-const fileUpload = require('express-fileUpload');
+const fileUpload = require('express-fileupload');
 
 class Server {
 
@@ -74,7 +74,7 @@ class Server {
 
     listen(){
 
-        this.app.listen( this.port || process.env.PORT, () => {
+        this.app.listen( this.port, () => {
             console.log("Servidor corriendo en puerto ", this.port );
         } );
     };
