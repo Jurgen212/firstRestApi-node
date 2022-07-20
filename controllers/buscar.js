@@ -22,7 +22,7 @@ const buscarUsuarios = async( termino = ``, res = response ) =>{
             
             results: ( usuario ) ? [ usuario ] : []
         } );
-    }
+    };
 
 
     const regex = new RegExp( termino, 'i' );
